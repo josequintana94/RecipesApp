@@ -9,13 +9,6 @@ import android.view.ViewGroup
 import jose.recipesapp.R
 
 class DetailFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = DetailFragment()
-    }
-
-    private lateinit var viewModel: DetailViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +20,5 @@ class DetailFragment : Fragment() {
         view: View, savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[DetailViewModel::class.java]
     }
 }
