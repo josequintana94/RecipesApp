@@ -42,13 +42,14 @@ internal class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipeViewHo
     inner class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(recipe: Recipe) {
             val nameTextView = itemView.findViewById<TextView>(R.id.recipeNameTextView)
-            val descriptionTextView =
-                itemView.findViewById<TextView>(R.id.recipeDescriptionTextView)
+            val areaTextView =
+                itemView.findViewById<TextView>(R.id.recipeAreaTextView)
             val recipeImageView = itemView.findViewById<ImageView>(R.id.recipeImageView)
-
+            val categoryTextView =
+                itemView.findViewById<TextView>(R.id.recipeCategoryTextView)
             nameTextView.text = recipe.name
-            val recipeDescription = "${recipe.description?.take(100)} ..."
-            descriptionTextView.text = recipeDescription
+            areaTextView.text = recipe.area
+            categoryTextView.text = recipe.category
             Glide.with(itemView.context).load(recipe.image).into(recipeImageView)
         }
     }

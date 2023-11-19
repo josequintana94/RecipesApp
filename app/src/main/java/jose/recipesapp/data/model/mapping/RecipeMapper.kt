@@ -9,7 +9,11 @@ fun RecipeDTO.toDomainModel(): Recipe {
         id = idMeal,
         name = strMeal,
         description = strInstructions,
-        image = strMealThumb
+        image = strMealThumb,
+        category = strCategory,
+        area = strArea,
+        youtubeLink = strYoutube,
+        sourceLink = strSource
     )
 }
 
