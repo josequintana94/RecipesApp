@@ -32,6 +32,13 @@ internal class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipeViewHo
         notifyDataSetChanged()
     }
 
+    fun filterRecipes(query: String) {
+        val filteredRecipes = recipes.filter {
+            it.name?.contains(query, true) ?: false
+        }
+        setRecipes(filteredRecipes)
+    }
+
     inner class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(recipe: Recipe) {
             val nameTextView = itemView.findViewById<TextView>(R.id.recipeNameTextView)
