@@ -34,7 +34,7 @@ internal class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipeViewHo
 
     fun filterRecipes(query: String) {
         val filteredRecipes = recipes.filter {
-            it.name?.contains(query, true) ?: false
+            it.name?.contains(query, true) == true || it.description?.contains(query, true) == true
         }
         setRecipes(filteredRecipes)
     }
