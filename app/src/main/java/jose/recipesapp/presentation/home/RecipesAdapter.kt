@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import jose.recipesapp.R
@@ -40,6 +41,15 @@ internal class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.RecipeViewHo
     }
 
     inner class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        init {
+            itemView.setOnClickListener {
+                val clickedRecipe = recipes[adapterPosition]
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(clickedRecipe)
+                findNavController(itemView).navigate(action)
+            }
+        }
+
         fun bind(recipe: Recipe) {
             val nameTextView = itemView.findViewById<TextView>(R.id.recipeNameTextView)
             val areaTextView =

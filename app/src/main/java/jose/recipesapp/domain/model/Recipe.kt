@@ -1,5 +1,7 @@
 package jose.recipesapp.domain.model
 
+import java.io.Serializable
+
 data class Recipe(
     val id: String? = null,
     val name: String? = null,
@@ -9,4 +11,4 @@ data class Recipe(
     val area: String? = null,
     val youtubeLink: String? = null,
     val sourceLink: String? = null,
-)
+) : Serializable
