@@ -5,15 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import jose.recipesapp.R
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
+    private var recipesReciclerView: RecyclerView? = null
+    private var recipesAdapter: RecipesAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,20 +28,20 @@ class HomeFragment : Fragment() {
         view: View, savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
+
+        recipesReciclerView = view.findViewById(R.id.recipesRecyclerView)
+        recipesAdapter = RecipesAdapter()
+        recipesReciclerView?.adapter = recipesAdapter
+
         with(viewModel) {
             isLoading.observe(viewLifecycleOwner) {
                 println("isLoading: $it")
             }
 
             recipes.observe(viewLifecycleOwner) {
-                println("recipes: $it")
+                println("recipes: ${it.size}")
+                recipesAdapter?.setRecipes(it)
             }
-        }
-
-        val goToDetailButton = view.findViewById<Button>(R.id.goToDetailButton)
-        goToDetailButton.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment()
-            findNavController().navigate(action)
         }
     }
 }
