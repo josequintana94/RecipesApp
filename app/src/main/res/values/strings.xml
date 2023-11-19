@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RecipesApp</string>
+    <string name="youtube_link">YouTube Link</string>
+    <string name="source_link">Source Link</string>
+    <string name="recipesapp">RecipesApp</string>
+    <string name="search_by_name_or_ingredient">Search by name or ingredient</string>
+    <string name="loading_recipes">Loading recipes...</string>
 </resources>

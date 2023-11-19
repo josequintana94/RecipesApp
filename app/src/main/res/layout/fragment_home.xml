@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="RecipesApp"
+        android:text="@string/recipesapp"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -46,13 +46,13 @@
         android:iconifiedByDefault="false"
         android:imeOptions="actionSearch"
         android:inputType="text"
-        app:defaultQueryHint="Search by name or ingredient"
+        app:defaultQueryHint="@string/search_by_name_or_ingredient"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoImageView"
         app:queryBackground="@android:color/transparent"
-        app:queryHint="Search by name or ingredient" />
+        app:queryHint="@string/search_by_name_or_ingredient" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipesRecyclerView"
@@ -89,8 +89,8 @@
             android:id="@+id/recipesLoadingTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_gravity="center"
-            android:text="Loading recipes..." />
+            android:layout_marginTop="16dp"
+            android:text="@string/loading_recipes" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
