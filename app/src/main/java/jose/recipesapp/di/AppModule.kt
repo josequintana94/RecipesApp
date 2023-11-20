@@ -10,8 +10,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import jose.recipesapp.data.repository.RecipeRepositoryImpl
+import jose.recipesapp.data.source.GeolocationProvider
 import jose.recipesapp.data.source.RetrofitService
 import jose.recipesapp.domain.repository.RecipeRepository
+import jose.recipesapp.domain.usecases.GetRecipeGeocodingUseCase
 import jose.recipesapp.domain.usecases.GetRecipesUseCase
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -117,12 +119,22 @@ class AppModule {
 
     @Singleton
     @Provides
+    fun provideGeolocationProvider() = GeolocationProvider()
+
+    @Singleton
+    @Provides
     fun provideRecipeRepository(
-        retrofitService: RetrofitService
+        retrofitService: RetrofitService,
+        getlocationProvider: GeolocationProvider
     ): RecipeRepository {
-        return RecipeRepositoryImpl(retrofitService)
+        return RecipeRepositoryImpl(retrofitService, getlocationProvider)
     }
 
     @Provides
-    fun provideGetRecipesUseCase(repository: RecipeRepositoryImpl) = GetRecipesUseCase(repository)
+    fun provideGetRecipesUseCase(recipeRepository: RecipeRepository) =
+        GetRecipesUseCase(recipeRepository)
+
+    @Provides
+    fun provideGetRecipeGeocodingUseCase(recipeRepository: RecipeRepository) =
+        GetRecipeGeocodingUseCase(recipeRepository)
 }

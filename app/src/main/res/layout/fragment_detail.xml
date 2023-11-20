@@ -30,6 +30,7 @@
     </RelativeLayout>
 
     <ScrollView
+        android:id="@+id/layoutScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/recipeHeaderLayout">
@@ -81,6 +82,14 @@
                     tools:text="Area" />
             </LinearLayout>
 
+            <Button
+                android:id="@+id/goToLocationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/go_to_location"
+                android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/recipeDescriptionTextView"
                 android:layout_width="match_parent"
@@ -130,5 +139,13 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/recipeLoadingProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:indeterminate="true" />
 
 </RelativeLayout>

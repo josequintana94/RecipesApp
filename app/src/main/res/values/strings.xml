@@ -5,4 +5,5 @@
     <string name="recipesapp">RecipesApp</string>
     <string name="search_by_name_or_ingredient">Search by name or ingredient</string>
     <string name="loading_recipes">Loading recipes...</string>
+    <string name="go_to_location">Go to location</string>
 </resources>

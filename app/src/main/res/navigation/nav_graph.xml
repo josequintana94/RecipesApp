@@ -25,5 +25,19 @@
         <argument
             android:name="recipe"
             app:argType="jose.recipesapp.domain.model.Recipe" />
+
+        <action
+            android:id="@+id/action_detailFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="jose.recipesapp.presentation.map.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps">
+
+        <argument
+            android:name="latLng"
+            app:argType="com.google.android.gms.maps.model.LatLng" />
     </fragment>
 </navigation>

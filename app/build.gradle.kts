@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -56,6 +57,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.9.1")
 
     implementation("androidx.multidex:multidex:2.0.1")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     val navVersion = "2.7.5"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")

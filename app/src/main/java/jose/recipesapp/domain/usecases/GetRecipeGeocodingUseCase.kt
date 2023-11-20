@@ -3,9 +3,10 @@ package jose.recipesapp.domain.usecases
 import jose.recipesapp.domain.repository.RecipeRepository
 import javax.inject.Inject
 
-class GetRecipesUseCase @Inject constructor(
+class GetRecipeGeocodingUseCase @Inject constructor(
     private val recipeRepository: RecipeRepository
 ) {
-    operator fun invoke() =
-        recipeRepository.getRecipes()
+
+    operator fun invoke(area: String) =
+        recipeRepository.getRecipeGeocoding(area)
 }

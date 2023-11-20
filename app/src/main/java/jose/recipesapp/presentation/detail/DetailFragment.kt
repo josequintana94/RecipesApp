@@ -6,21 +6,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import jose.recipesapp.R
-import java.util.regex.Pattern
 
-
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
     private val args: DetailFragmentArgs by navArgs()
+    private val viewModel: DetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +34,6 @@ class DetailFragment : Fragment() {
         view: View, savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        val recipe = args.recipe
         val recipeImageView = view.findViewById<ImageView>(R.id.recipeImageView)
         val recipeNameTextView = view.findViewById<TextView>(R.id.recipeNameTextView)
         val descriptionTextView = view.findViewById<TextView>(R.id.recipeDescriptionTextView)
@@ -42,6 +42,31 @@ class DetailFragment : Fragment() {
         val recipeYoutubeTextView = view.findViewById<TextView>(R.id.recipeYoutubeLinkTextView)
         val recipeSourceTextView = view.findViewById<TextView>(R.id.recipeSourceLinkTextView)
         val backArrowImageView = view.findViewById<ImageView>(R.id.backArrowImageView)
+        val goToLocationButton = view.findViewById<TextView>(R.id.goToLocationButton)
+
+        val recipe = args.recipe
+        viewModel.onViewInit(recipe)
+
+        with(viewModel) {
+            isLoading.observe(viewLifecycleOwner) {
+                it?.let { visibility ->
+                    view.findViewById<ProgressBar>(R.id.recipeLoadingProgressBar).visibility =
+                        if (visibility) View.VISIBLE else View.GONE
+                    view.findViewById<ScrollView>(R.id.layoutScrollView).visibility =
+                        if (visibility) View.GONE else View.VISIBLE
+                }
+            }
+            latLng.observe(viewLifecycleOwner) {
+                it?.let { latLng ->
+                    goToLocationButton.setOnClickListener {
+                        val action =
+                            DetailFragmentDirections.actionDetailFragmentToMapsFragment(latLng)
+                        findNavController().navigate(action)
+                    }
+                }
+            }
+        }
+
         backArrowImageView.setOnClickListener {
             findNavController().popBackStack()
         }
