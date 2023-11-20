@@ -57,6 +57,7 @@ class DetailFragment : Fragment() {
                 }
             }
             latLng.observe(viewLifecycleOwner) {
+                println("latLng: $it")
                 it?.let { latLng ->
                     goToLocationButton.setOnClickListener {
                         val action =

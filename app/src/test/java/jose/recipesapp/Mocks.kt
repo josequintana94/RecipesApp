@@ -14,9 +14,18 @@ class Mocks {
             )
         )
 
-        private val mockArea = "Argentina"
+        private val mockArea = "England"
 
-        private val mockLatLng = LatLng(-34.603722, -58.381592)
+        private val mockLatLng = LatLng(52.3555177, -1.1743197)
+
+        private val recipe = Recipe(
+            "1",
+            "https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg",
+            "Beef and Mustard Pie",
+            "beef.png",
+            "Dinner",
+            mockArea,
+        )
 
         fun getMockRecipeList(): List<Recipe> {
             return mockRecipeList
@@ -28,6 +37,10 @@ class Mocks {
 
         fun getMockLatLng(): LatLng {
             return mockLatLng
+        }
+
+        fun getMockRecipe(): Recipe {
+            return recipe
         }
     }
 }

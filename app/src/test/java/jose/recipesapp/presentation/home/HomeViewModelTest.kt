@@ -1,6 +1,7 @@
 package jose.recipesapp.presentation.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -26,6 +27,7 @@ class HomeViewModelTest {
     @Before
     fun setUp() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
+        MockKAnnotations.init(this)
         recipeRepository = mockk()
         getRecipesUseCase = GetRecipesUseCase(recipeRepository)
         homeViewModel = HomeViewModel(getRecipesUseCase)
