@@ -39,7 +39,7 @@ class GetRecipesUseCaseTest {
     }
 
     private fun whenGetRecipesUseCase() {
-        getRecipesUseCase.execute({}, {})
+        getRecipesUseCase.invoke()
     }
 
     private fun thenGetRecipesIsCalled() {

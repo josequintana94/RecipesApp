@@ -1,5 +1,6 @@
 package jose.recipesapp
 
+import com.google.android.gms.maps.model.LatLng
 import jose.recipesapp.domain.model.Recipe
 
 class Mocks {
@@ -13,8 +14,20 @@ class Mocks {
             )
         )
 
+        private val mockArea = "Argentina"
+
+        private val mockLatLng = LatLng(-34.603722, -58.381592)
+
         fun getMockRecipeList(): List<Recipe> {
             return mockRecipeList
+        }
+
+        fun getMockArea(): String {
+            return mockArea
+        }
+
+        fun getMockLatLng(): LatLng {
+            return mockLatLng
         }
     }
 }
