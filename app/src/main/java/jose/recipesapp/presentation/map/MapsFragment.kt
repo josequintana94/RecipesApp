@@ -18,7 +18,6 @@ class MapsFragment : Fragment() {
     private val args: MapsFragmentArgs by navArgs()
 
     private val callback = OnMapReadyCallback { googleMap ->
-        println("args maps fragment: ${args.latLng}")
         val place = args.latLng
         googleMap.addMarker(MarkerOptions().position(place).title("Marker"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(place))

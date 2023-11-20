@@ -44,7 +44,6 @@ class HomeFragment : Fragment() {
 
         recipesSearchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                println("onQueryTextSubmit: $query")
                 if (query.isNullOrEmpty()) {
                     recipesAdapter?.setRecipes(viewModel.recipes.value ?: emptyList())
                 } else {
@@ -54,7 +53,6 @@ class HomeFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                println("onQueryTextChange: $newText")
                 if (newText.isNullOrEmpty()) {
                     recipesAdapter?.setRecipes(viewModel.recipes.value ?: emptyList())
                 } else {
@@ -66,7 +64,6 @@ class HomeFragment : Fragment() {
 
         with(viewModel) {
             isLoading.observe(viewLifecycleOwner) {
-                println("isLoading: $it")
                 if (it) {
                     recipesReciclerView?.visibility = View.GONE
                     loadingLayout?.visibility = View.VISIBLE
@@ -77,7 +74,6 @@ class HomeFragment : Fragment() {
             }
 
             recipes.observe(viewLifecycleOwner) {
-                println("recipes: ${it.size}")
                 recipesAdapter?.setRecipes(it)
             }
         }
