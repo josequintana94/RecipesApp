@@ -8,6 +8,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.Single
 import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import jose.recipesapp.Mocks
 import jose.recipesapp.domain.model.Recipe
@@ -29,6 +30,11 @@ class DetailViewModelTest {
 
     @Before
     fun setUp() {
+        RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
+        RxJavaPlugins.setComputationSchedulerHandler { Schedulers.trampoline() }
+        RxJavaPlugins.setNewThreadSchedulerHandler { Schedulers.trampoline() }
+        RxJavaPlugins.setSingleSchedulerHandler { Schedulers.trampoline() }
+
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
         MockKAnnotations.init(this)
         recipeRepository = mockk()
@@ -58,7 +64,8 @@ class DetailViewModelTest {
 
     private fun thenGetRecipeGeocodingIsCalled() {
         verify { recipeRepository.getRecipeGeocoding(mockRecipe.area.toString()) }
-        assert(detailViewModel.latLng.value == mockLatLng)
+        assert(detailViewModel.latLng.value?.latitude == mockLatLng.latitude)
+        assert(detailViewModel.latLng.value?.longitude == mockLatLng.longitude)
         assert(detailViewModel.isLoading.value == false)
     }
 }
